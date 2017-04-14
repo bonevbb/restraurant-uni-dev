@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('tutorial', 'TutorialController@getNavbar');
-Route::get('/home1', 'TutorialController@getView1');
-Route::get('/about-us', 'TutorialController@getView2');
+//Route::get('tutorial', 'TutorialController@getNavbar');
+//Route::get('/home1', 'TutorialController@getView1');
+//Route::get('/about-us', 'TutorialController@getView2');
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,10 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
         'as'    => 'admin.logout'
     ]);
 
-    Route::get('/menus', [
-        'uses' => 'Admin\KitchenController@getMenus',
-        'as'    => 'admin.menus'
-    ]);
+    Route::resource('/menus','Admin\KitchenController');
 });
 
 Auth::routes();

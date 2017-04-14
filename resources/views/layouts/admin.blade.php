@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link href="{{ asset('dist/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 @yield('loadCSS')
 
 <!-- Scripts -->
@@ -187,20 +190,20 @@
             <ul class="sidebar-menu">
                 <li class="header">&nbsp;</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active">
+                <li class="active nav_dashboard">
                     <a href="{{route('dashboard')}}">
                         <i class="fa fa-dashboard fa-fw"></i><span>Табло</span>
                     </a>
                 </li>
                 <!--Kitchen-->
-                <li class="treeview">
+                <li class="treeview nav_kitchen">
                     <a href="#"><i class="fa fa-cutlery fa-fw"></i> <span>Кухня</span>
                         <span class="pull-right-container">
                              <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('admin.menus')}}">Менюта</a></li>
+                        <li class="nav_menus"><a href="{{url('admin/menus')}}">Менюта</a></li>
                         <li><a href="#">Категории</a></li>
                         <li><a href="#">Опции</a></li>
                         <li><a href="#">Алергени</a></li>
@@ -372,13 +375,15 @@
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-
 <!-- Scripts -->
 <script src="{{ asset('plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/app.js')}}"></script>
+<script src="{{ asset('js/routie.js') }}"></script>
+<script src="{{asset('js/ajax-navigation.js')}}"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
 @yield('scripts')
 
