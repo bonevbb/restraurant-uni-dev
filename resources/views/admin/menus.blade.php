@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('loadCSS')
-    <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
+
 @endsection
 
 @section('bodyStart')
@@ -26,12 +26,18 @@
             <section class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#myModal"><i
-                                    class="fa fa-plus"></i>Добави</a>
+                        <a class="btn btn-primary" href="{{url('admin/menus/create')}}">
+                            <i class="fa fa-plus"></i> Добави</a>
                     </div>
                 </div>
                 <div class="row menus-table">
                     <div class="col-md-12">
+                        @if(Session::has('success'))
+                            <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                                {{Session::get('success')}}
+                            </div>
+                        @endif
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">Списък с менютата</h3>
@@ -63,36 +69,27 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="action">
-                                            <input type="checkbox" value="id" name="delete"/>
-                                        </td>
-                                        <td>1</td>
-                                        <td>Тест</td>
-                                        <td>15 лв.</td>
-                                        <td>Супи</td>
-                                        <td>5 бр.</td>
-                                        <td>Включен</td>
-                                        <td>
-                                            <a class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
-                                            <a class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="action">
-                                            <input type="checkbox" value="id" name="delete"/>
-                                        </td>
-                                        <td>1</td>
-                                        <td>Тест</td>
-                                        <td>15 лв.</td>
-                                        <td>Супи</td>
-                                        <td>5 бр.</td>
-                                        <td>Включен</td>
-                                        <td>
-                                            <a class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
-                                            <a class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
-                                        </td>
-                                    </tr>
+                                    @foreach($menus as $menu)
+                                        <tr>
+                                            <td class="action">
+                                                <input type="checkbox" value="id" name="delete"/>
+                                            </td>
+                                            <td>{{$menu->id_menu}}</td>
+                                            <td>{{$menu->menu_name}}</td>
+                                            <td>{{$menu->menu_price}}</td>
+                                            <td>Категория</td>
+                                            <td>{{$menu->stock_qty}}</td>
+                                            @if($menu->menu_status)
+                                            <td>Да</td>
+                                                @else
+                                                <td>Не</td>
+                                            @endif
+                                            <td>
+                                                <a class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                                <a class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -116,23 +113,27 @@
                     <form>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="name-product">Име</label>
-                                <input type="text" class="form-control" id="name-product"
+                                <label for="menu-name">Име</label>
+                                <input type="text" class="form-control" id="menu-name"
                                        placeholder="Име на артикула">
-                                <small id="name-product" class="form-text text-muted">We'll never share your email with
-                                    anyone else.
+                                <small id="menu-name" class="form-text text-muted">
+                                    test test
                                 </small>
                             </div>
                             <div class="form-group">
-                                <label for="price">Цена</label>
+                                <label for="menu-description">Описание</label>
+                                <textarea class="form-control" id="menu-description" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="menu-price">Цена</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="price" min="0">
+                                    <input type="number" class="form-control" id="menu-price" min="0">
                                     <span class="input-group-addon">лв.</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleSelect1">Избери категория</label>
-                                <select class="form-control" id="exampleSelect1">
+                                <label for="select-category">Избери категория</label>
+                                <select class="form-control" id="select-category">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -141,8 +142,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="qty">Количество</label>
-                                <input type="number" class="form-control" id="qty" min="0">
+                                <label for="menu-qty">Количество</label>
+                                <input type="number" class="form-control" id="menu-qty" min="0">
                             </div>
                             <div class="form-group">
                                 <p style="font-weight: 700;">Видим</p>

@@ -21,6 +21,7 @@
     <link href="{{ asset('dist/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
 
 @yield('loadCSS')
 
@@ -82,7 +83,7 @@
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="../dist/img/user2-160x160.jpg" class="img-circle"
+                                                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle"
                                                      alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
@@ -131,14 +132,14 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{ Auth::guard('admin')->user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 
                                 <p>
                                     {{Auth::guard('admin')->user()->name}}
