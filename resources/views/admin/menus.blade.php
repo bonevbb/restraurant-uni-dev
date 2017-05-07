@@ -43,11 +43,12 @@
                                 <h3 class="box-title">Списък с менютата</h3>
                                 <div class="box-tools">
                                     <ul class="pagination pagination-sm no-margin pull-right">
-                                        <li><a href="#">«</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">»</a></li>
+                                        <li>{{ $pagination->links() }}</li>
+                                        {{--<li><a href="#">«</a></li>--}}
+                                        {{--<li><a href="#">1</a></li>--}}
+                                        {{--<li><a href="#">2</a></li>--}}
+                                        {{--<li><a href="#">3</a></li>--}}
+                                        {{--<li><a href="#">»</a></li>--}}
                                     </ul>
                                 </div>
                             </div>
@@ -74,7 +75,7 @@
                                             <td class="action">
                                                 <input type="checkbox" value="id" name="delete"/>
                                             </td>
-                                            <td>{{$menu->id_menu}}</td>
+                                            <td>{{$menu->id}}</td>
                                             <td>{{$menu->menu_name}}</td>
                                             <td>{{$menu->menu_price}}</td>
                                             <td>Категория</td>
@@ -85,8 +86,13 @@
                                                 <td>Не</td>
                                             @endif
                                             <td>
-                                                <a class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
-                                                <a class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                                <a href="{{url('admin/menus/'.$menu->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
+                                                {{--<a  href="{{url('admin/menus/destroy')}}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>--}}
+                                                <form class="form-buttons" action="menus/{{ $menu->id }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

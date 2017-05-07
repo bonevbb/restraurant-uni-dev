@@ -14,7 +14,7 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->increments('id_menu');
+            $table->increments('id');
             $table->string('menu_name');
             $table->text('menu_description');
             $table->decimal('menu_price',15,4);
