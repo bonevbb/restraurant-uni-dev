@@ -21,7 +21,7 @@ class MenusTableSeeder extends Seeder
             $menu->menu_name = 'Menu' . $index;
             $menu->menu_description = $faker->text;
             $menu->menu_price = $faker->numberBetween(1,10);
-            $menu->id_menu_category =  $faker->numberBetween(1,10);
+            $menu->category_id =  $faker->numberBetween(1,10);
             $menu->stock_qty = $faker->numberBetween(1,10);
             $menu->menu_status = 1;
             $menu->save();

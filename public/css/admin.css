@@ -13,3 +13,22 @@ input[type=number]::-webkit-outer-spin-button {
 .form-buttons{
     display: inline-block;
 }
+
+button.btn.btn-default.fileinput-upload.fileinput-upload-button {
+    display: none;
+}
+
+#image-preview{
+    margin-top: 20px;
+    width: 20%;
+    height: auto;
+}
+#image-preview-edit{
+    margin-top: 20px;
+    width: 20%;
+    height: auto;
+}
+.td-classic{
+    text-align: center;
+    vertical-align: middle !important;
+}

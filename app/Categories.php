@@ -13,7 +13,9 @@ class Categories extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','description','id_parent','image','status'];
+    protected $fillable = ['name','description','id_parent','category_photo','status'];
 
-
+    public function menu(){
+        return $this->hasMany('App\Menus');
+    }
 }

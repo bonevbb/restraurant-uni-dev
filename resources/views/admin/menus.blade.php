@@ -43,12 +43,7 @@
                                 <h3 class="box-title">Списък с менютата</h3>
                                 <div class="box-tools">
                                     <ul class="pagination pagination-sm no-margin pull-right">
-                                        <li>{{ $pagination->links() }}</li>
-                                        {{--<li><a href="#">«</a></li>--}}
-                                        {{--<li><a href="#">1</a></li>--}}
-                                        {{--<li><a href="#">2</a></li>--}}
-                                        {{--<li><a href="#">3</a></li>--}}
-                                        {{--<li><a href="#">»</a></li>--}}
+                                        <li>{{ $menus->links() }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -57,11 +52,12 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th width="4%">
-                                            <input type="checkbox"
-                                                   onclick="$('input[name*=\'delete\']').prop('checked', this.checked);">
-                                        </th>
+                                        {{--<th width="4%">--}}
+                                            {{--<input type="checkbox"--}}
+                                                   {{--onclick="$('input[name*=\'delete\']').prop('checked', this.checked);">--}}
+                                        {{--</th>--}}
                                         <th>Номер</th>
+                                        <th>Снимка</th>
                                         <th>Име</th>
                                         <th>Цена</th>
                                         <th>Категория</th>
@@ -72,20 +68,27 @@
                                     <tbody>
                                     @foreach($menus as $menu)
                                         <tr>
-                                            <td class="action">
-                                                <input type="checkbox" value="id" name="delete"/>
+                                            {{--<td class="action">--}}
+                                                {{--<input type="checkbox" value="id" name="delete"/>--}}
+                                            {{--</td>--}}
+                                            <td width="4%" class="td-classic">{{$menu->id}}</td>
+                                            <td width="200px">
+                                                @if($menu->menu_photo != null)
+                                                <img width="100%" src="{{asset($menu->menu_photo)}}">
+                                                    @else
+                                                    <img class="img-responsive" src="{{asset('img/no-image.png')}}">
+                                                @endif
                                             </td>
-                                            <td>{{$menu->id}}</td>
-                                            <td>{{$menu->menu_name}}</td>
-                                            <td>{{$menu->menu_price}}</td>
-                                            <td>Категория</td>
-                                            <td>{{$menu->stock_qty}}</td>
+                                            <td class="td-classic">{{$menu->menu_name}}</td>
+                                            <td class="td-classic">{{$menu->menu_price}}</td>
+                                            <td class="td-classic">{{$menu->category->name}}</td>
+                                            <td class="td-classic">{{$menu->stock_qty}}</td>
                                             @if($menu->menu_status)
-                                            <td>Да</td>
+                                            <td class="td-classic">Да</td>
                                                 @else
-                                                <td>Не</td>
+                                                <td class="td-classic">Не</td>
                                             @endif
-                                            <td>
+                                            <td class="td-classic">
                                                 <a href="{{url('admin/menus/'.$menu->id.'/edit')}}" class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"></i></a>
                                                 {{--<a  href="{{url('admin/menus/destroy')}}" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>--}}
                                                 <form class="form-buttons" action="menus/{{ $menu->id }}" method="post">
@@ -107,63 +110,6 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Добавяне на меню</h4>
-                    </div>
-                    <form>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="menu-name">Име</label>
-                                <input type="text" class="form-control" id="menu-name"
-                                       placeholder="Име на артикула">
-                                <small id="menu-name" class="form-text text-muted">
-                                    test test
-                                </small>
-                            </div>
-                            <div class="form-group">
-                                <label for="menu-description">Описание</label>
-                                <textarea class="form-control" id="menu-description" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="menu-price">Цена</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control" id="menu-price" min="0">
-                                    <span class="input-group-addon">лв.</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select-category">Избери категория</label>
-                                <select class="form-control" id="select-category">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="menu-qty">Количество</label>
-                                <input type="number" class="form-control" id="menu-qty" min="0">
-                            </div>
-                            <div class="form-group">
-                                <p style="font-weight: 700;">Видим</p>
-                                <input type="checkbox" id="on-off" data-toggle="toggle" data-on="Да" data-off="Не">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     @endsection
 
     @section('scripts')

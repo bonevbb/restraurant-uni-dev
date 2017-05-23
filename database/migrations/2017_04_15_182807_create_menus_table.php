@@ -17,14 +17,16 @@ class CreateMenusTable extends Migration
             $table->increments('id');
             $table->string('menu_name');
             $table->text('menu_description');
-            $table->decimal('menu_price',15,4);
+            $table->decimal('menu_price');
             $table->string('menu_photo')->nullable();
-            $table->integer('id_menu_category');
+            $table->integer('category_id')->unsigned();
             $table->integer('stock_qty');
             $table->integer('minimum_qty')->default(1);
             $table->integer('id_mealtime')->nullable();
             $table->boolean('menu_status');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

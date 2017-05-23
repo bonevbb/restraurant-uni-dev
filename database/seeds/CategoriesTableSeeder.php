@@ -21,7 +21,6 @@ class CategoriesTableSeeder extends Seeder
             $category->name = 'Category ' . $index;
             $category->description = $faker->text;
             $category->id_parent = 0;
-            $category->image =  $faker->imageUrl('800',640,'food');
             $category->status = 1;
             $category->save();
         }

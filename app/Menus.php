@@ -13,5 +13,9 @@ class Menus extends Model
      *
      * @var array
      */
-    protected $fillable = ['menu_name','menu_description','menu_price','id_menu_category','stock_qty','menu_status'];
+    protected $fillable = ['menu_name','menu_description','menu_price','menu_photo','category_id','stock_qty','menu_status'];
+
+    public function category(){
+        return $this->hasOne('App\Categories','id' , 'category_id');
+    }
 }

@@ -12,8 +12,7 @@
 
     <!-- Bootstrap 3.3.6 -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-{{--<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">--}}
-<!-- Font Awesome -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
@@ -205,9 +204,9 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="nav_menus"><a href="{{url('admin/menus')}}">Менюта</a></li>
-                        <li><a href="#">Категории</a></li>
-                        <li><a href="#">Опции</a></li>
-                        <li><a href="#">Алергени</a></li>
+                        <li class="nav_categories"><a href="{{url('admin/categories')}}">Категории</a></li>
+                        <li class="nav_options"><a href="{{url('admin/options')}}" >Опции</a></li>
+                        <li class="nav_allergens"><a href="{{url('admin/allergens')}}">Алергени</a></li>
                     </ul>
                 </li>
                 <!--Sales-->
@@ -385,6 +384,7 @@
 <script src="{{ asset('js/routie.js') }}"></script>
 <script src="{{asset('js/ajax-navigation.js')}}"></script>
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 
 @yield('scripts')
 

@@ -41,8 +41,16 @@ Route::group(['prefix' => 'admin'], function () {
         'as'    => 'admin.logout'
     ]);
 
+    Route::get('/menus/product-options', 'Admin\AutoCompleteController@optionsAutoComplete');
+    Route::get('/menus/{id}/product-options', 'Admin\AutoCompleteController@optionsAutoCompleteEdit');
+
     Route::resource('/menus','Admin\KitchenController');
+    Route::resource('/categories','Admin\CategoriesController');
+    Route::resource('/options','Admin\OptionsController');
+    Route::resource('/allergens','Admin\AllergensController');
 });
+
+
 
 Auth::routes();
 
